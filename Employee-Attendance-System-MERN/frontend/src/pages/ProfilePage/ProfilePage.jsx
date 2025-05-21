@@ -12,7 +12,7 @@ function ProfilePage() {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/me", {
+        const res = await axios.get("https://sreemaniramdyeing-backend.onrender.com/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setName(res.data.name);
@@ -32,7 +32,7 @@ function ProfilePage() {
 
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/auth/profile",
+        "https://sreemaniramdyeing-backend.onrender.com/api/auth/profile",
         { name, department },
         {
           headers: {

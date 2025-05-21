@@ -41,7 +41,7 @@ const AdminDashboard = () => {
   const fetchUsers = () => {
     const department = localStorage.getItem("Dept");
     axios
-      .get("http://localhost:5000/api/admin/users", {
+      .get("https://sreemaniramdyeing-backend.onrender.com/api/admin/users", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}`, department: department, },
       })
       .then(({ data }) => {
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+      await axios.delete(`https://sreemaniramdyeing-backend.onrender.com/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       alert("User and their attendance records deleted successfully!");
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
   const changeUserDept = async (userId, newDept) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/users/${userId}/dept`,
+        `https://sreemaniramdyeing-backend.onrender.com/api/admin/users/${userId}/dept`,
         { department: newDept },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
 
   const fetchAttendance = () => {
     axios
-      .get("http://localhost:5000/api/admin/attendance", {
+      .get("https://sreemaniramdyeing-backend.onrender.com/api/admin/attendance", {
         params: {
           userId: selectedUser,
           date: selectedDate.toISOString().split("T")[0],
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
   const addAttendance = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/admin/attendance",
+        "https://sreemaniramdyeing-backend.onrender.com/api/admin/attendance",
         {
           userId: selectedUser,
           date: selectedDate.toISOString().split("T")[0],
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
     const currentYear = new Date().getFullYear();
 
     try {
-      const response = await axios.get("http://localhost:5000/api/attendance/monthly", {
+      const response = await axios.get("https://sreemaniramdyeing-backend.onrender.com/api/attendance/monthly", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         params: { year: currentYear, month: currentMonth },
       });
@@ -153,7 +153,7 @@ const AdminDashboard = () => {
 
   const fetchAllAttendance = () => {
     axios
-      .get("http://localhost:5000/api/admin/attendance/all", {
+      .get("https://sreemaniramdyeing-backend.onrender.com/api/admin/attendance/all", {
         params: { userId: selectedUser },
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
@@ -169,7 +169,7 @@ const AdminDashboard = () => {
 
   const deleteAttendance = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/attendance/${id}`, {
+      await axios.delete(`https://sreemaniramdyeing-backend.onrender.com/api/admin/attendance/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
